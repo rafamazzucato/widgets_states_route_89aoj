@@ -11,20 +11,25 @@ class HomeWidget extends StatefulWidget {
 class _HomeWidgetState extends State<HomeWidget> {
   final title = const Text("Minhas lingagens");
 
-  List<Language> languages = [
-    Language("Android Nativo", "Linguagens C, Java e Kotlin",
-        "assets/images/android.png"),
-    Language("iOS Nativo", "Linguagens Objective-C, e Swift",
-        "assets/images/ios.png"),
-    Language("Flutter", "Linguagem Dart", "assets/images/flutter.png"),
-    Language("React Native", "Linguagens Javascript e Typescript",
-        "assets/images/native.png"),
-  ];
+  List<Language> languages = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: title),
+      appBar: AppBar(
+        title: title,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/form').then((language) {
+                  setState(() {
+                    languages.add(language as Language);
+                  });
+                });
+              },
+              icon: const Icon(Icons.add))
+        ],
+      ),
       body: Column(children: [
         Wrap(children: _buildChoices()),
         Expanded(child: ListView(children: _buildListItems()))

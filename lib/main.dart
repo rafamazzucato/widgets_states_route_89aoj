@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_states_route/screens/form.dart';
 import 'package:widgets_states_route/screens/home.dart';
 
 void main() {
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeWidget(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeWidget(),
+        '/form': (context) => LanguagesFormWidget()
+      },
     );
   }
 }
